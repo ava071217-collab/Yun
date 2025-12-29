@@ -1,0 +1,3690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于小芸的一切</title>
+    <style>
+        /* ===== 全局样式与墨绿色系主题 ===== */
+        :root {
+            --bg-light: #f8f9f5;
+            --card-bg: #f0f4eb;
+            --primary: #2c5530;
+            --primary-dark: #1e3a22;
+            --accent: #4a7c59;
+            --highlight: #b99346;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #d8e2d4;
+            --success: #4a7c59;
+            --warning: #d4a017;
+            --danger: #c44536;
+            --shadow: rgba(44, 85, 48, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f8f9f5 0%, #e8f1e0 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow);
+            overflow: hidden;
+            min-height: 90vh;
+        }
+        
+        /* ===== 标题区域 ===== */
+        .header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+        }
+        
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        /* ===== 导航选项卡 ===== */
+        .tabs {
+            display: flex;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 18px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .tab:hover {
+            background-color: rgba(74, 124, 89, 0.05);
+            color: var(--primary);
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--highlight);
+            font-weight: 500;
+            background-color: white;
+        }
+        
+        .tab-icon {
+            font-size: 1.3rem;
+        }
+        
+        /* ===== 主内容区域 ===== */
+        .content {
+            padding: 30px;
+            min-height: 500px;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ===== 通用卡片样式 ===== */
+        .dashboard-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 25px;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+        
+        .card-icon {
+            font-size: 1.4rem;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* ===== 按钮样式 ===== */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e8efe0;
+        }
+        
+        .btn-edit {
+            background-color: var(--highlight);
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background-color: #a87d3a;
+        }
+        
+        .btn-delete {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .btn-delete:hover {
+            background-color: #f1b0b7;
+        }
+        
+        .btn-save {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background-color: #3a6b48;
+        }
+        
+        .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #545b62;
+        }
+        
+        /* ===== 表单样式 ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: white;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        /* ===== 编辑模态框 ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-close:hover {
+            background-color: var(--card-bg);
+            color: var(--primary);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        /* ===== Dashboard 仪表盘 ===== */
+        .dashboard-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .total-assets {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--primary);
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .quick-btn {
+            padding: 14px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .quick-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .status-item .status-text {
+            flex: 1;
+        }
+        
+        /* ===== 学习中心样式 ===== */
+        .todo-list, .wishlist-items, .exercise-list, .medication-list, .journal-list, .account-list {
+            margin-top: 20px;
+        }
+        
+        .todo-item, .wishlist-item, .exercise-item, .medication-item, .journal-item, .account-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.2s ease;
+        }
+        
+        .todo-item:hover, .wishlist-item:hover, .exercise-item:hover, 
+        .medication-item:hover, .journal-item:hover, .account-item:hover {
+            background-color: #e8efe0;
+            transform: translateX(5px);
+        }
+        
+        .item-checkbox {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .item-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+        
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            word-break: break-word;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .timer-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .timer-display {
+            font-size: 3rem;
+            font-family: monospace;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .timer-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            min-width: 100px;
+        }
+        
+        /* ===== 日记模块样式 ===== */
+        .journal-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .journal-editor {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .journal-sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .journal-textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+        }
+        
+        .emotion-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .emotion-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background-color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .emotion-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px var(--shadow);
+        }
+        
+        .emotion-btn.selected {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .notebook-list {
+            margin-top: 15px;
+        }
+        
+        .notebook-item {
+            padding: 12px 15px;
+            border-left: 3px solid var(--border);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .notebook-item:hover {
+            background-color: var(--card-bg);
+            border-left-color: var(--accent);
+        }
+        
+        .notebook-item.active {
+            background-color: var(--card-bg);
+            border-left-color: var(--highlight);
+            font-weight: 500;
+        }
+        
+        /* ===== 财产模块样式 ===== */
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .account-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
+            border-top: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .account-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+        
+        .account-name {
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .account-balance {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--primary);
+        }
+        
+        .transaction-form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .wishlist-item, .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px var(--shadow);
+        }
+        
+        /* ===== 健康模块样式 ===== */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .mood-calendar {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin-top: 25px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .calendar-day.empty {
+            background-color: transparent;
+            cursor: default;
+        }
+        
+        .calendar-day.good {
+            background-color: rgba(74, 124, 89, 0.2);
+            color: var(--primary);
+        }
+        
+        .calendar-day.neutral {
+            background-color: rgba(185, 147, 70, 0.2);
+            color: var(--highlight);
+        }
+        
+        .calendar-day.bad {
+            background-color: rgba(196, 69, 54, 0.2);
+            color: var(--danger);
+        }
+        
+        .calendar-day:hover:not(.empty) {
+            transform: scale(1.1);
+            box-shadow: 0 5px 10px var(--shadow);
+        }
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 12px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                flex: 1 0 50%;
+                padding: 15px 0;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .dashboard-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .journal-container {
+                flex-direction: column;
+            }
+            
+            .health-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10px;
+            }
+        }
+        
+        /* ===== 工具类 ===== */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-10 { margin-top: 10px; }
+        .mt-20 { margin-top: 20px; }
+        .mt-30 { margin-top: 30px; }
+        .mb-10 { margin-bottom: 10px; }
+        .mb-20 { margin-bottom: 20px; }
+        .mb-30 { margin-bottom: 30px; }
+        
+        .d-flex {
+            display: flex;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .align-center {
+            align-items: center;
+        }
+        
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        
+        .gap-10 {
+            gap: 10px;
+        }
+        
+        .gap-20 {
+            gap: 20px;
+        }
+        
+        .w-100 {
+            width: 100%;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <h1 class="main-title">关于小芸的一切</h1>
+            <p class="subtitle">原来你一直在这里。</p>
+        </div>
+        
+        <!-- 导航选项卡 -->
+        <div class="tabs">
+            <div class="tab active" data-tab="dashboard">
+                <span class="tab-icon">📊</span>
+                <span>仪表盘</span>
+            </div>
+            <div class="tab" data-tab="study">
+                <span class="tab-icon">📖</span>
+                <span>学习中心</span>
+            </div>
+            <div class="tab" data-tab="journal">
+                <span class="tab-icon">📓</span>
+                <span>日记</span>
+            </div>
+            <div class="tab" data-tab="finance">
+                <span class="tab-icon">💰</span>
+                <span>财产管理</span>
+            </div>
+            <div class="tab" data-tab="health">
+                <span class="tab-icon">🌿</span>
+                <span>健康管理</span>
+            </div>
+            <div class="tab" data-tab="settings">
+                <span class="tab-icon">⚙️</span>
+                <span>系统设置</span>
+            </div>
+        </div>
+        
+        <!-- 主内容区域 -->
+        <div class="content">
+            <!-- 仪表盘 -->
+            <div class="tab-content active" id="dashboard">
+                <div class="dashboard-section">
+                    <!-- 总资产卡片 -->
+                    <div class="dashboard-card">
+                        <h3 class="card-title">
+                            <span class="card-icon">💰</span>
+                            总资产概览
+                            <button class="btn btn-edit btn-sm" onclick="editTotalAssets()">编辑</button>
+                        </h3>
+                        <div class="total-assets" id="totalAssetsDisplay">¥ 0.00</div>
+                        <div class="text-center">
+                            <button class="btn btn-secondary" onclick="switchTab('finance')">查看详情</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 快捷操作卡片 -->
+                    <div class="dashboard-card">
+                        <h3 class="card-title">
+                            <span class="card-icon">⚡</span>
+                            快捷操作
+                            <button class="btn btn-edit btn-sm" onclick="editQuickActions()">编辑</button>
+                        </h3>
+                        <div class="quick-actions" id="quickActionsContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 今日状态卡片 -->
+                    <div class="dashboard-card">
+                        <h3 class="card-title">
+                            <span class="card-icon">📊</span>
+                            今日状态
+                            <button class="btn btn-edit btn-sm" onclick="editTodayStatus()">编辑</button>
+                        </h3>
+                        <div id="todayStatusContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 模块联动提示 -->
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🔗</span>
+                        模块联动
+                    </h3>
+                    <div class="status-item">
+                        <div class="status-text">
+                            <strong>学习计时 → 日记</strong>
+                            <div>计时结束后可快速记录学习心得</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-text">
+                            <strong>情绪标记 → 健康日历</strong>
+                            <div>日记中的情绪自动同步到健康模块</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-text">
+                            <strong>运动目标 → 财产心愿</strong>
+                            <div>运动达标可设置财产心愿单奖励</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习中心 -->
+            <div class="tab-content" id="study">
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">📖</span>
+                        学习中心
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="showTodoModal()">+ 添加待办</button>
+                            <button class="btn btn-secondary" onclick="showSkillModal()">+ 添加技能</button>
+                        </div>
+                    </h3>
+                    
+                    <!-- 待办事项 -->
+                    <div class="form-group">
+                        <label>今日待办事项</label>
+                        <div class="todo-list" id="todoListContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 学习计时器 -->
+                    <div class="timer-section">
+                        <h3 style="color: white; margin-bottom: 20px;">专注计时器</h3>
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn start" onclick="startTimer()">开始</button>
+                            <button class="timer-btn pause" onclick="pauseTimer()">暂停</button>
+                            <button class="timer-btn stop" onclick="stopTimer()">结束</button>
+                            <button class="timer-btn" style="background-color: var(--highlight);" onclick="editTimerSettings()">设置</button>
+                        </div>
+                        <div class="mt-20">
+                            <input type="text" class="form-control" id="timerNote" placeholder="输入学习内容备注...">
+                        </div>
+                    </div>
+                    
+                    <!-- 想学技能 -->
+                    <div class="mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">🎯</span>
+                            想学技能
+                        </h3>
+                        <div class="todo-list" id="skillListContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 日记模块 -->
+            <div class="tab-content" id="journal">
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">📓</span>
+                        日记本管理
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="showNotebookModal()">+ 新建日记本</button>
+                        </div>
+                    </h3>
+                    
+                    <div class="journal-container">
+                        <!-- 日记本列表 -->
+                        <div class="journal-sidebar">
+                            <div class="notebook-list" id="notebookListContainer">
+                                <!-- 通过JS动态生成 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 日记编辑器 -->
+                        <div class="journal-editor">
+                            <div class="form-group">
+                                <label>写日记</label>
+                                <input type="text" class="form-control mb-10" placeholder="日记标题" id="journalTitle">
+                                <textarea class="journal-textarea" placeholder="记录今天的点点滴滴...（输入 //now 插入当前时间）" id="journalContent"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>选择情绪</label>
+                                <div class="emotion-selector" id="emotionSelector">
+                                    <div class="emotion-btn" onclick="selectEmotion(this, 'good')">😊 开心</div>
+                                    <div class="emotion-btn" onclick="selectEmotion(this, 'good')">😌 平静</div>
+                                    <div class="emotion-btn" onclick="selectEmotion(this, 'neutral')">😐 一般</div>
+                                    <div class="emotion-btn" onclick="selectEmotion(this, 'bad')">😔 难过</div>
+                                    <div class="emotion-btn" onclick="selectEmotion(this, 'bad')">😫 疲惫</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>选择日记本</label>
+                                <select class="form-control" id="journalNotebookSelect">
+                                    <!-- 通过JS动态生成 -->
+                                </select>
+                            </div>
+                            
+                            <div class="d-flex justify-between mt-20">
+                                <button class="btn btn-secondary" onclick="insertTimestamp()">插入当前时间</button>
+                                <button class="btn btn-primary" onclick="saveJournal()">保存日记</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 日记列表 -->
+                    <div class="mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">📄</span>
+                            最近日记
+                            <button class="btn btn-secondary btn-sm" onclick="refreshJournals()">刷新</button>
+                        </h3>
+                        <div class="journal-list" id="journalListContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 财产管理 -->
+            <div class="tab-content" id="finance">
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">💰</span>
+                        财产管理
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="showAccountModal()">+ 添加账户</button>
+                            <button class="btn btn-secondary" onclick="showWishModal()">+ 添加心愿</button>
+                        </div>
+                    </h3>
+                    
+                    <!-- 账户概览 -->
+                    <div class="form-group">
+                        <label>账户概览</label>
+                        <div class="accounts-grid" id="accountsGridContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 快速记账 -->
+                    <div class="transaction-form">
+                        <h3 class="card-title">
+                            <span class="card-icon">💸</span>
+                            快速记账
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>类型</label>
+                                <select class="form-control" id="transactionType">
+                                    <option value="expense">支出</option>
+                                    <option value="income">收入</option>
+                                    <option value="transfer">转账</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>分类</label>
+                                <select class="form-control" id="transactionCategory">
+                                    <option value="food">餐饮</option>
+                                    <option value="transport">交通</option>
+                                    <option value="shopping">购物</option>
+                                    <option value="study">学习</option>
+                                    <option value="entertainment">娱乐</option>
+                                    <option value="salary">工资</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>金额 (¥)</label>
+                                <input type="number" class="form-control" id="transactionAmount" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>账户</label>
+                                <select class="form-control" id="transactionAccount">
+                                    <!-- 通过JS动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>日期</label>
+                                <input type="date" class="form-control" id="transactionDate">
+                            </div>
+                            <div class="form-group">
+                                <label>备注 (可选)</label>
+                                <input type="text" class="form-control" id="transactionNote" placeholder="例如：午餐">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>目标账户 (仅转账时使用)</label>
+                            <select class="form-control" id="transactionTargetAccount">
+                                <!-- 通过JS动态生成 -->
+                            </select>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="addTransaction()">记录这笔账</button>
+                    </div>
+                    
+                    <!-- 交易记录 -->
+                    <div class="mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">📋</span>
+                            最近交易记录
+                            <button class="btn btn-secondary btn-sm" onclick="refreshTransactions()">刷新</button>
+                        </h3>
+                        <div class="todo-list" id="transactionListContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 心愿单 -->
+                    <div class="mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">🎁</span>
+                            心愿单
+                        </h3>
+                        <div class="todo-list" id="wishlistContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                        <div class="mt-20 d-flex justify-between align-center">
+                            <div>
+                                <strong>选中的目标总需：<span id="wishlistTotal">¥ 0</span></strong>
+                            </div>
+                            <button class="btn btn-primary" onclick="showWishModal()">+ 添加新愿望</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 健康管理 -->
+            <div class="tab-content" id="health">
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">🌿</span>
+                        健康管理
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="showMedicationModal()">+ 添加药品</button>
+                            <button class="btn btn-secondary" onclick="showExerciseModal()">+ 添加运动</button>
+                        </div>
+                    </h3>
+                    
+                    <div class="health-grid">
+                        <!-- 服药管理 -->
+                        <div class="medication-list">
+                            <h3 class="card-title">
+                                <span class="card-icon">💊</span>
+                                今日服药
+                            </h3>
+                            <div class="todo-list" id="medicationListContainer">
+                                <!-- 通过JS动态生成 -->
+                            </div>
+                            <div class="mt-20 d-flex justify-between">
+                                <button class="btn btn-secondary" onclick="markAllMedications()">标记全部完成</button>
+                                <button class="btn btn-primary" onclick="showMedicationModal()">+ 添加新药</button>
+                            </div>
+                        </div>
+                        
+                        <!-- 运动计划 -->
+                        <div class="exercise-planner">
+                            <h3 class="card-title">
+                                <span class="card-icon">🏃</span>
+                                今日运动
+                            </h3>
+                            <div class="todo-list" id="exerciseListContainer">
+                                <!-- 通过JS动态生成 -->
+                            </div>
+                            <div class="mt-20">
+                                <button class="btn btn-primary w-100" onclick="showExerciseModal()">+ 调整运动任务</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 情绪日历 -->
+                    <div class="mood-calendar mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">📅</span>
+                            情绪日历 - <span id="currentMonthDisplay"></span>
+                            <div class="card-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="prevMonth()">上个月</button>
+                                <button class="btn btn-secondary btn-sm" onclick="nextMonth()">下个月</button>
+                            </div>
+                        </h3>
+                        <div class="calendar-grid" id="calendarGridContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                        
+                        <div class="mt-20 d-flex justify-center flex-wrap gap-20">
+                            <div class="d-flex align-center">
+                                <div class="calendar-day good" style="width: 20px; height: 20px; margin-right: 8px;"></div>
+                                <span>好</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <div class="calendar-day neutral" style="width: 20px; height: 20px; margin-right: 8px;"></div>
+                                <span>一般</span>
+                            </div>
+                            <div class="d-flex align-center">
+                                <div class="calendar-day bad" style="width: 20px; height: 20px; margin-right: 8px;"></div>
+                                <span>差</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 身体数据记录 -->
+                    <div class="mt-30">
+                        <h3 class="card-title">
+                            <span class="card-icon">📈</span>
+                            身体数据记录
+                            <button class="btn btn-primary btn-sm" onclick="showBodyDataModal()">+ 添加记录</button>
+                        </h3>
+                        <div class="todo-list" id="bodyDataListContainer">
+                            <!-- 通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 系统设置 -->
+            <div class="tab-content" id="settings">
+                <div class="dashboard-card">
+                    <h3 class="card-title">
+                        <span class="card-icon">⚙️</span>
+                        系统设置
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label>数据管理</label>
+                        <div class="d-flex gap-10 flex-wrap">
+                            <button class="btn btn-primary" onclick="exportData()">导出所有数据</button>
+                            <button class="btn btn-secondary" onclick="importData()">导入数据</button>
+                            <button class="btn btn-secondary" onclick="backupData()">备份数据</button>
+                            <button class="btn btn-delete" onclick="resetData()">重置所有数据</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>主题设置</label>
+                        <div class="d-flex gap-10 flex-wrap">
+                            <button class="btn btn-secondary" onclick="setTheme('light')">浅色主题</button>
+                            <button class="btn btn-secondary" onclick="setTheme('dark')">深色主题</button>
+                            <button class="btn btn-secondary" onclick="setTheme('green')">墨绿主题</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>初始化系统</label>
+                        <div class="d-flex gap-10 flex-wrap">
+                            <button class="btn btn-primary" onclick="initializeSystem()">初始化所有数据</button>
+                            <button class="btn btn-secondary" onclick="initializeModule('study')">初始化学习中心</button>
+                            <button class="btn btn-secondary" onclick="initializeModule('journal')">初始化日记模块</button>
+                            <button class="btn btn-secondary" onclick="initializeModule('finance')">初始化财产管理</button>
+                            <button class="btn btn-secondary" onclick="initializeModule('health')">初始化健康管理</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>快捷键设置</label>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>插入当前时间</strong>
+                                <div>在日记中输入 //now 或按 Ctrl+D</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>快速记账</strong>
+                                <div>在任意页面按 Ctrl+Q</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>开始计时</strong>
+                                <div>按 Ctrl+T 开始学习计时</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>系统信息</label>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>版本</strong>
+                                <div>v1.0.0 - 关于小芸的一切</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>数据存储</strong>
+                                <div id="storageInfo">正在计算...</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-text">
+                                <strong>最后备份</strong>
+                                <div id="lastBackupInfo">从未备份</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 通用编辑模态框 -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">
+                    <span id="modalIcon">📝</span>
+                    <span id="modalAction">编辑</span>
+                </h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 动态生成表单 -->
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <!-- 动态生成按钮 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 确认对话框 -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <span>⚠️</span>
+                    确认操作
+                </h3>
+                <button class="modal-close" onclick="closeConfirmModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">您确定要执行此操作吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeConfirmModal()">取消</button>
+                <button class="btn btn-delete" id="confirmActionBtn">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== 全局变量 =====
+        let appData = {
+            dashboard: {
+                totalAssets: 0,
+                quickActions: [
+                    { id: 1, name: "写日记", icon: "✏️", action: "journal" },
+                    { id: 2, name: "快速记账", icon: "💰", action: "finance" },
+                    { id: 3, name: "开始计时", icon: "⏱️", action: "timer" },
+                    { id: 4, name: "吃药打卡", icon: "💊", action: "health" }
+                ],
+                todayStatus: [
+                    { id: 1, title: "学习进度", value: "今日已学 0 小时 | 待办 0 项" },
+                    { id: 2, title: "健康状态", value: "睡眠 -- | 喝水 --/8 杯" },
+                    { id: 3, title: "日记记录", value: "本月已写 0 篇" },
+                    { id: 4, title: "今日情绪", value: "😐 未记录" }
+                ]
+            },
+            study: {
+                todos: [],
+                skills: [],
+                timerSettings: {
+                    defaultDuration: 25,
+                    autoStart: false
+                },
+                studyRecords: []
+            },
+            journal: {
+                notebooks: [
+                    { id: 1, name: "日常随笔", color: "#4a7c59", count: 0 }
+                ],
+                entries: [],
+                currentNotebookId: 1
+            },
+            finance: {
+                accounts: [
+                    { id: 1, name: "微信钱包", balance: 356.80, icon: "💳", type: "digital" },
+                    { id: 2, name: "支付宝", balance: 1250.50, icon: "💳", type: "digital" },
+                    { id: 3, name: "现金", balance: 200.00, icon: "💵", type: "cash" },
+                    { id: 4, name: "储蓄卡", balance: 5000.00, icon: "🏦", type: "bank" }
+                ],
+                transactions: [],
+                wishes: [
+                    { id: 1, name: "Switch游戏卡带", targetAmount: 320, savedAmount: 120, active: true },
+                    { id: 2, name: "新球鞋", targetAmount: 600, savedAmount: 300, active: true },
+                    { id: 3, name: "生日请客", targetAmount: 500, savedAmount: 0, active: true }
+                ],
+                categories: ["餐饮", "交通", "购物", "学习", "娱乐", "工资", "其他"]
+            },
+            health: {
+                medications: [
+                    { id: 1, name: "阿莫西林", dosage: "1粒", time: "08:30", taken: false, frequency: "每日三次" },
+                    { id: 2, name: "维生素C", dosage: "1粒", time: "12:30", taken: false, frequency: "每日一次" },
+                    { id: 3, name: "过敏药", dosage: "1粒", time: "18:30", taken: false, frequency: "每日一次" }
+                ],
+                exercises: [
+                    { id: 1, name: "俯卧撑", target: "3组×15个", completed: 0, type: "strength" },
+                    { id: 2, name: "深蹲", target: "3组×20个", completed: 0, type: "strength" },
+                    { id: 3, name: "慢跑", target: "30分钟", completed: 0, type: "cardio" },
+                    { id: 4, name: "拉伸", target: "10分钟", completed: 0, type: "flexibility" }
+                ],
+                bodyData: [],
+                moodRecords: {},
+                currentMonth: new Date().getMonth(),
+                currentYear: new Date().getFullYear()
+            },
+            settings: {
+                theme: "green",
+                shortcuts: {
+                    insertTime: "Ctrl+D",
+                    quickRecord: "Ctrl+Q",
+                    startTimer: "Ctrl+T"
+                },
+                lastBackup: null,
+                version: "1.0.0"
+            }
+        };
+        
+        let currentEditItem = null;
+        let currentEditType = null;
+        let timerInterval = null;
+        let timerSeconds = 25 * 60;
+        let isTimerRunning = false;
+        let selectedEmotion = null;
+        let pendingConfirmAction = null;
+        
+        // ===== 初始化系统 =====
+        function initializeSystem() {
+            // 清空所有数据
+            appData = {
+                dashboard: {
+                    totalAssets: 0,
+                    quickActions: [
+                        { id: 1, name: "写日记", icon: "✏️", action: "journal" },
+                        { id: 2, name: "快速记账", icon: "💰", action: "finance" },
+                        { id: 3, name: "开始计时", icon: "⏱️", action: "timer" },
+                        { id: 4, name: "吃药打卡", icon: "💊", action: "health" }
+                    ],
+                    todayStatus: [
+                        { id: 1, title: "学习进度", value: "今日已学 0 小时 | 待办 0 项" },
+                        { id: 2, title: "健康状态", value: "睡眠 -- | 喝水 --/8 杯" },
+                        { id: 3, title: "日记记录", value: "本月已写 0 篇" },
+                        { id: 4, title: "今日情绪", value: "😐 未记录" }
+                    ]
+                },
+                study: {
+                    todos: [],
+                    skills: [],
+                    timerSettings: {
+                        defaultDuration: 25,
+                        autoStart: false
+                    },
+                    studyRecords: []
+                },
+                journal: {
+                    notebooks: [
+                        { id: 1, name: "日常随笔", color: "#4a7c59", count: 0 }
+                    ],
+                    entries: [],
+                    currentNotebookId: 1
+                },
+                finance: {
+                    accounts: [],
+                    transactions: [],
+                    wishes: [],
+                    categories: ["餐饮", "交通", "购物", "学习", "娱乐", "工资", "其他"]
+                },
+                health: {
+                    medications: [],
+                    exercises: [],
+                    bodyData: [],
+                    moodRecords: {},
+                    currentMonth: new Date().getMonth(),
+                    currentYear: new Date().getFullYear()
+                },
+                settings: {
+                    theme: "green",
+                    shortcuts: {
+                        insertTime: "Ctrl+D",
+                        quickRecord: "Ctrl+Q",
+                        startTimer: "Ctrl+T"
+                    },
+                    lastBackup: null,
+                    version: "1.0.0"
+                }
+            };
+            
+            // 保存到localStorage
+            saveData();
+            
+            // 重新渲染所有界面
+            renderAll();
+            
+            alert("系统已初始化完成！");
+        }
+        
+        function initializeModule(module) {
+            switch(module) {
+                case 'study':
+                    appData.study = {
+                        todos: [],
+                        skills: [],
+                        timerSettings: {
+                            defaultDuration: 25,
+                            autoStart: false
+                        },
+                        studyRecords: []
+                    };
+                    renderStudyModule();
+                    alert("学习中心已初始化！");
+                    break;
+                    
+                case 'journal':
+                    appData.journal = {
+                        notebooks: [
+                            { id: 1, name: "日常随笔", color: "#4a7c59", count: 0 }
+                        ],
+                        entries: [],
+                        currentNotebookId: 1
+                    };
+                    renderJournalModule();
+                    alert("日记模块已初始化！");
+                    break;
+                    
+                case 'finance':
+                    appData.finance = {
+                        accounts: [],
+                        transactions: [],
+                        wishes: [],
+                        categories: ["餐饮", "交通", "购物", "学习", "娱乐", "工资", "其他"]
+                    };
+                    renderFinanceModule();
+                    alert("财产管理已初始化！");
+                    break;
+                    
+                case 'health':
+                    appData.health = {
+                        medications: [],
+                        exercises: [],
+                        bodyData: [],
+                        moodRecords: {},
+                        currentMonth: new Date().getMonth(),
+                        currentYear: new Date().getFullYear()
+                    };
+                    renderHealthModule();
+                    alert("健康管理已初始化！");
+                    break;
+            }
+            
+            saveData();
+        }
+        
+        // ===== 数据存储 =====
+        function saveData() {
+            localStorage.setItem('xiaoyunSystemData', JSON.stringify(appData));
+            updateStorageInfo();
+        }
+        
+        function loadData() {
+            const saved = localStorage.getItem('xiaoyunSystemData');
+            if (saved) {
+                appData = JSON.parse(saved);
+                // 确保所有必要字段都存在
+                if (!appData.dashboard) initializeSystem();
+            }
+            updateStorageInfo();
+        }
+        
+        function updateStorageInfo() {
+            const dataStr = JSON.stringify(appData);
+            const size = new Blob([dataStr]).size;
+            const kb = (size / 1024).toFixed(2);
+            document.getElementById('storageInfo').textContent = `${kb} KB 已使用`;
+            
+            if (appData.settings.lastBackup) {
+                const date = new Date(appData.settings.lastBackup);
+                document.getElementById('lastBackupInfo').textContent = date.toLocaleString();
+            }
+        }
+        
+        // ===== 渲染函数 =====
+        function renderAll() {
+            renderDashboard();
+            renderStudyModule();
+            renderJournalModule();
+            renderFinanceModule();
+            renderHealthModule();
+            renderSettingsModule();
+        }
+        
+        function renderDashboard() {
+            // 更新总资产
+            const total = appData.finance.accounts.reduce((sum, acc) => sum + acc.balance, 0);
+            appData.dashboard.totalAssets = total;
+            document.getElementById('totalAssetsDisplay').textContent = `¥ ${total.toFixed(2)}`;
+            
+            // 渲染快捷操作
+            const quickActionsContainer = document.getElementById('quickActionsContainer');
+            quickActionsContainer.innerHTML = '';
+            appData.dashboard.quickActions.forEach(action => {
+                const button = document.createElement('button');
+                button.className = 'quick-btn';
+                button.innerHTML = `<span class="btn-icon">${action.icon}</span> ${action.name}`;
+                button.onclick = () => quickAction(action.action);
+                quickActionsContainer.appendChild(button);
+            });
+            
+            // 渲染今日状态
+            const statusContainer = document.getElementById('todayStatusContainer');
+            statusContainer.innerHTML = '';
+            appData.dashboard.todayStatus.forEach(status => {
+                const div = document.createElement('div');
+                div.className = 'status-item';
+                div.innerHTML = `
+                    <div class="status-text">
+                        <strong>${status.title}</strong>
+                        <div>${status.value}</div>
+                    </div>
+                    <button class="btn btn-edit btn-sm" onclick="editStatusItem(${status.id})">编辑</button>
+                `;
+                statusContainer.appendChild(div);
+            });
+            
+            saveData();
+        }
+        
+        function renderStudyModule() {
+            // 渲染待办事项
+            const todoContainer = document.getElementById('todoListContainer');
+            todoContainer.innerHTML = '';
+            
+            if (appData.study.todos.length === 0) {
+                todoContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <p>暂无待办事项</p>
+                        <button class="btn btn-primary mt-10" onclick="showTodoModal()">添加第一个待办</button>
+                    </div>
+                `;
+            } else {
+                appData.study.todos.forEach(todo => {
+                    const progress = todo.subtasks && todo.subtasks.length > 0 
+                        ? (todo.subtasks.filter(st => st.completed).length / todo.subtasks.length * 100).toFixed(0)
+                        : todo.completed ? 100 : 0;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'todo-item';
+                    div.innerHTML = `
+                        <input type="checkbox" class="item-checkbox" ${todo.completed ? 'checked' : ''} 
+                               onclick="toggleTodo(${todo.id})">
+                        <div class="item-content">
+                            <div class="item-title">${todo.title}</div>
+                            ${todo.dueDate ? `<div class="item-subtitle">截止：${todo.dueDate}</div>` : ''}
+                            ${todo.subtasks && todo.subtasks.length > 0 ? 
+                                `<div class="item-subtitle">${todo.subtasks.filter(st => st.completed).length}/${todo.subtasks.length} 个子任务</div>` : ''}
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editTodo(${todo.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteTodo(${todo.id})">删除</button>
+                        </div>
+                    `;
+                    todoContainer.appendChild(div);
+                });
+            }
+            
+            // 渲染技能列表
+            const skillContainer = document.getElementById('skillListContainer');
+            skillContainer.innerHTML = '';
+            
+            if (appData.study.skills.length === 0) {
+                skillContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎯</div>
+                        <p>暂无想学技能</p>
+                    </div>
+                `;
+            } else {
+                appData.study.skills.forEach(skill => {
+                    const div = document.createElement('div');
+                    div.className = 'todo-item';
+                    div.innerHTML = `
+                        <div class="item-content">
+                            <div class="item-title">${skill.name}</div>
+                            ${skill.steps && skill.steps.length > 0 ? 
+                                `<div class="item-subtitle">${skill.steps.length} 个学习步骤</div>` : 
+                                `<div class="item-subtitle">暂无学习步骤</div>`}
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editSkill(${skill.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteSkill(${skill.id})">删除</button>
+                        </div>
+                    `;
+                    skillContainer.appendChild(div);
+                });
+            }
+            
+            // 更新仪表盘状态
+            const today = new Date().toISOString().split('T')[0];
+            const todayTodos = appData.study.todos.filter(todo => !todo.completed);
+            const todayStudyTime = appData.study.studyRecords
+                .filter(record => record.date === today)
+                .reduce((sum, record) => sum + record.duration, 0);
+            
+            appData.dashboard.todayStatus[0].value = `今日已学 ${(todayStudyTime / 60).toFixed(1)} 小时 | 待办 ${todayTodos.length} 项`;
+            
+            renderDashboard();
+        }
+        
+        function renderJournalModule() {
+            // 渲染日记本列表
+            const notebookList = document.getElementById('notebookListContainer');
+            const notebookSelect = document.getElementById('journalNotebookSelect');
+            
+            notebookList.innerHTML = '';
+            notebookSelect.innerHTML = '';
+            
+            appData.journal.notebooks.forEach(notebook => {
+                // 计算该日记本的日记数量
+                const count = appData.journal.entries.filter(entry => entry.notebookId === notebook.id).length;
+                
+                // 添加到日记本列表
+                const div = document.createElement('div');
+                div.className = `notebook-item ${notebook.id === appData.journal.currentNotebookId ? 'active' : ''}`;
+                div.innerHTML = `
+                    <span>${notebook.name} (${count})</span>
+                    <div>
+                        <button class="btn btn-edit btn-sm" onclick="editNotebook(${notebook.id})">编辑</button>
+                        ${notebook.id !== 1 ? `<button class="btn btn-delete btn-sm" onclick="deleteNotebook(${notebook.id})">删除</button>` : ''}
+                    </div>
+                `;
+                div.onclick = () => selectNotebook(notebook.id);
+                notebookList.appendChild(div);
+                
+                // 添加到下拉选择
+                const option = document.createElement('option');
+                option.value = notebook.id;
+                option.textContent = notebook.name;
+                if (notebook.id === appData.journal.currentNotebookId) option.selected = true;
+                notebookSelect.appendChild(option);
+            });
+            
+            // 渲染日记列表
+            renderJournalList();
+            
+            // 更新仪表盘状态
+            const currentMonth = new Date().getMonth() + 1;
+            const monthEntries = appData.journal.entries.filter(entry => {
+                const entryMonth = new Date(entry.date).getMonth() + 1;
+                return entryMonth === currentMonth;
+            });
+            
+            appData.dashboard.todayStatus[2].value = `本月已写 ${monthEntries.length} 篇`;
+            
+            renderDashboard();
+        }
+        
+        function renderJournalList() {
+            const journalList = document.getElementById('journalListContainer');
+            journalList.innerHTML = '';
+            
+            // 获取当前日记本的日记
+            const currentNotebookEntries = appData.journal.entries
+                .filter(entry => entry.notebookId === appData.journal.currentNotebookId)
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 10); // 只显示最近10篇
+            
+            if (currentNotebookEntries.length === 0) {
+                journalList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📄</div>
+                        <p>暂无日记</p>
+                    </div>
+                `;
+            } else {
+                currentNotebookEntries.forEach(entry => {
+                    const div = document.createElement('div');
+                    div.className = 'journal-item';
+                    div.innerHTML = `
+                        <div class="item-content">
+                            <div class="item-title">${entry.title || '无标题日记'}</div>
+                            <div class="item-subtitle">${entry.date} • ${getEmotionText(entry.emotion)}</div>
+                            <div class="item-subtitle" style="margin-top: 5px; color: #666; font-size: 0.9em;">
+                                ${entry.content.substring(0, 100)}${entry.content.length > 100 ? '...' : ''}
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editJournal(${entry.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteJournal(${entry.id})">删除</button>
+                        </div>
+                    `;
+                    journalList.appendChild(div);
+                });
+            }
+        }
+        
+        function renderFinanceModule() {
+            // 渲染账户列表
+            const accountsContainer = document.getElementById('accountsGridContainer');
+            const accountSelect = document.getElementById('transactionAccount');
+            const targetAccountSelect = document.getElementById('transactionTargetAccount');
+            
+            accountsContainer.innerHTML = '';
+            accountSelect.innerHTML = '';
+            targetAccountSelect.innerHTML = '<option value="">选择目标账户</option>';
+            
+            if (appData.finance.accounts.length === 0) {
+                accountsContainer.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <div class="empty-state-icon">🏦</div>
+                        <p>暂无账户</p>
+                        <button class="btn btn-primary mt-10" onclick="showAccountModal()">添加第一个账户</button>
+                    </div>
+                `;
+            } else {
+                appData.finance.accounts.forEach(account => {
+                    // 添加到账户网格
+                    const div = document.createElement('div');
+                    div.className = 'account-card';
+                    div.innerHTML = `
+                        <div class="account-name">
+                            <span>${account.icon}</span>
+                            ${account.name}
+                        </div>
+                        <div class="account-balance">¥ ${account.balance.toFixed(2)}</div>
+                        <div class="mt-10 d-flex gap-10">
+                            <button class="btn btn-edit btn-sm" onclick="editAccount(${account.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteAccount(${account.id})">删除</button>
+                        </div>
+                    `;
+                    accountsContainer.appendChild(div);
+                    
+                    // 添加到下拉选择
+                    const option1 = document.createElement('option');
+                    option1.value = account.id;
+                    option1.textContent = `${account.name} (¥${account.balance.toFixed(2)})`;
+                    accountSelect.appendChild(option1.cloneNode(true));
+                    
+                    const option2 = document.createElement('option');
+                    option2.value = account.id;
+                    option2.textContent = `${account.name} (¥${account.balance.toFixed(2)})`;
+                    targetAccountSelect.appendChild(option2);
+                });
+            }
+            
+            // 渲染交易记录
+            renderTransactionList();
+            
+            // 渲染心愿单
+            renderWishlist();
+            
+            // 更新总资产
+            renderDashboard();
+        }
+        
+        function renderTransactionList() {
+            const container = document.getElementById('transactionListContainer');
+            container.innerHTML = '';
+            
+            const recentTransactions = [...appData.finance.transactions]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 10);
+            
+            if (recentTransactions.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💸</div>
+                        <p>暂无交易记录</p>
+                    </div>
+                `;
+            } else {
+                recentTransactions.forEach(transaction => {
+                    const account = appData.finance.accounts.find(acc => acc.id === transaction.accountId);
+                    const targetAccount = transaction.targetAccountId ? 
+                        appData.finance.accounts.find(acc => acc.id === transaction.targetAccountId) : null;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'transaction-item';
+                    div.innerHTML = `
+                        <div class="item-content">
+                            <div class="item-title">
+                                <span style="color: ${transaction.type === 'income' ? 'green' : transaction.type === 'expense' ? 'red' : 'blue'}">
+                                    ${transaction.type === 'income' ? '⬆️' : transaction.type === 'expense' ? '⬇️' : '🔄'}
+                                </span>
+                                ${transaction.category} • ¥${transaction.amount.toFixed(2)}
+                            </div>
+                            <div class="item-subtitle">
+                                ${transaction.date} • ${account?.name || '未知账户'}
+                                ${targetAccount ? ` → ${targetAccount.name}` : ''}
+                                ${transaction.note ? ` • ${transaction.note}` : ''}
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editTransaction(${transaction.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteTransaction(${transaction.id})">删除</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+        }
+        
+        function renderWishlist() {
+            const container = document.getElementById('wishlistContainer');
+            container.innerHTML = '';
+            
+            if (appData.finance.wishes.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎁</div>
+                        <p>暂无心愿单</p>
+                    </div>
+                `;
+            } else {
+                appData.finance.wishes.forEach(wish => {
+                    const progress = (wish.savedAmount / wish.targetAmount * 100).toFixed(0);
+                    
+                    const div = document.createElement('div');
+                    div.className = 'wishlist-item';
+                    div.innerHTML = `
+                        <input type="checkbox" class="item-checkbox" ${wish.active ? 'checked' : ''} 
+                               onchange="toggleWish(${wish.id})">
+                        <div class="item-content">
+                            <div class="item-title">${wish.name}</div>
+                            <div class="item-subtitle">
+                                已存 ¥${wish.savedAmount.toFixed(2)} / 目标 ¥${wish.targetAmount.toFixed(2)}
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editWish(${wish.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteWish(${wish.id})">删除</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+            
+            calculateWishlistTotal();
+        }
+        
+        function renderHealthModule() {
+            // 渲染药品列表
+            const medContainer = document.getElementById('medicationListContainer');
+            medContainer.innerHTML = '';
+            
+            if (appData.health.medications.length === 0) {
+                medContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💊</div>
+                        <p>今日无服药计划</p>
+                    </div>
+                `;
+            } else {
+                appData.health.medications.forEach(med => {
+                    const div = document.createElement('div');
+                    div.className = 'medication-item';
+                    div.innerHTML = `
+                        <input type="checkbox" class="item-checkbox" ${med.taken ? 'checked' : ''} 
+                               onchange="toggleMedication(${med.id})">
+                        <div class="item-content">
+                            <div class="item-title">${med.name}</div>
+                            <div class="item-subtitle">${med.dosage} • ${med.time} • ${med.frequency}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editMedication(${med.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteMedication(${med.id})">删除</button>
+                        </div>
+                    `;
+                    medContainer.appendChild(div);
+                });
+            }
+            
+            // 渲染运动计划
+            const exerciseContainer = document.getElementById('exerciseListContainer');
+            exerciseContainer.innerHTML = '';
+            
+            if (appData.health.exercises.length === 0) {
+                exerciseContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🏃</div>
+                        <p>今日无运动计划</p>
+                    </div>
+                `;
+            } else {
+                appData.health.exercises.forEach(exercise => {
+                    const div = document.createElement('div');
+                    div.className = 'exercise-item';
+                    div.innerHTML = `
+                        <input type="checkbox" class="item-checkbox" ${exercise.completed > 0 ? 'checked' : ''}
+                               onchange="toggleExercise(${exercise.id})">
+                        <div class="item-content">
+                            <div class="item-title">${exercise.name}</div>
+                            <div class="item-subtitle">目标：${exercise.target}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editExercise(${exercise.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteExercise(${exercise.id})">删除</button>
+                        </div>
+                    `;
+                    exerciseContainer.appendChild(div);
+                });
+            }
+            
+            // 渲染情绪日历
+            renderMoodCalendar();
+            
+            // 渲染身体数据
+            renderBodyData();
+            
+            // 更新仪表盘状态
+            updateHealthStatus();
+        }
+        
+        function renderMoodCalendar() {
+            const container = document.getElementById('calendarGridContainer');
+            const monthDisplay = document.getElementById('currentMonthDisplay');
+            
+            const month = appData.health.currentMonth;
+            const year = appData.health.currentYear;
+            
+            monthDisplay.textContent = `${year}年${month + 1}月`;
+            
+            // 获取当月第一天和最后一天
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            
+            // 获取第一天是星期几（0=周日, 1=周一, ...）
+            const firstDayOfWeek = firstDay.getDay();
+            
+            container.innerHTML = '';
+            
+            // 添加空的日期格子
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'calendar-day empty';
+                container.appendChild(emptyDiv);
+            }
+            
+            // 添加日期格子
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                const mood = appData.health.moodRecords[dateStr];
+                
+                const dayDiv = document.createElement('div');
+                dayDiv.className = `calendar-day ${mood || 'empty'}`;
+                dayDiv.textContent = day;
+                dayDiv.title = dateStr + (mood ? ` (${getEmotionText(mood)})` : '');
+                dayDiv.onclick = () => recordMood(dateStr);
+                
+                container.appendChild(dayDiv);
+            }
+        }
+        
+        function renderBodyData() {
+            const container = document.getElementById('bodyDataListContainer');
+            container.innerHTML = '';
+            
+            const recentData = [...appData.health.bodyData]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+            
+            if (recentData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📈</div>
+                        <p>暂无身体数据记录</p>
+                    </div>
+                `;
+            } else {
+                recentData.forEach(data => {
+                    const div = document.createElement('div');
+                    div.className = 'todo-item';
+                    div.innerHTML = `
+                        <div class="item-content">
+                            <div class="item-title">${data.date}</div>
+                            <div class="item-subtitle">
+                                体重：${data.weight}kg ${data.fat ? `| 体脂：${data.fat}%` : ''}
+                                ${data.note ? `| ${data.note}` : ''}
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-edit btn-sm" onclick="editBodyData(${data.id})">编辑</button>
+                            <button class="btn btn-delete btn-sm" onclick="deleteBodyData(${data.id})">删除</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+        }
+        
+        function renderSettingsModule() {
+            updateStorageInfo();
+        }
+        
+        // ===== 编辑函数 =====
+        function editTotalAssets() {
+            showModal('编辑总资产', '💰', `
+                <div class="form-group">
+                    <label>手动设置总资产 (¥)</label>
+                    <input type="number" class="form-control" id="editTotalAmount" value="${appData.dashboard.totalAssets}" step="0.01">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveTotalAssets()">保存</button>
+            `);
+        }
+        
+        function saveTotalAssets() {
+            const amount = parseFloat(document.getElementById('editTotalAmount').value);
+            if (!isNaN(amount)) {
+                // 计算差值并调整第一个账户的余额
+                const diff = amount - appData.dashboard.totalAssets;
+                if (appData.finance.accounts.length > 0) {
+                    appData.finance.accounts[0].balance += diff;
+                }
+                renderFinanceModule();
+                closeModal();
+            }
+        }
+        
+        function editQuickActions() {
+            const actionsHTML = appData.dashboard.quickActions.map(action => `
+                <div class="form-row" style="align-items: center;">
+                    <div class="form-group">
+                        <input type="text" class="form-control" value="${action.name}" 
+                               onchange="updateQuickAction(${action.id}, 'name', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" value="${action.icon}" 
+                               onchange="updateQuickAction(${action.id}, 'icon', this.value)" style="max-width: 80px;">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" onchange="updateQuickAction(${action.id}, 'action', this.value)">
+                            <option value="journal" ${action.action === 'journal' ? 'selected' : ''}>写日记</option>
+                            <option value="finance" ${action.action === 'finance' ? 'selected' : ''}>快速记账</option>
+                            <option value="timer" ${action.action === 'timer' ? 'selected' : ''}>开始计时</option>
+                            <option value="health" ${action.action === 'health' ? 'selected' : ''}>吃药打卡</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-delete btn-sm" onclick="deleteQuickAction(${action.id})">删除</button>
+                </div>
+            `).join('');
+            
+            showModal('编辑快捷操作', '⚡', `
+                <div class="form-group">
+                    <label>快捷操作列表</label>
+                    ${actionsHTML}
+                </div>
+                <button class="btn btn-secondary w-100" onclick="addQuickAction()">+ 添加快捷操作</button>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="closeModal(); renderDashboard()">完成</button>
+            `);
+        }
+        
+        function updateQuickAction(id, field, value) {
+            const action = appData.dashboard.quickActions.find(a => a.id === id);
+            if (action) {
+                action[field] = value;
+                saveData();
+            }
+        }
+        
+        function deleteQuickAction(id) {
+            appData.dashboard.quickActions = appData.dashboard.quickActions.filter(a => a.id !== id);
+            saveData();
+            editQuickActions(); // 重新打开编辑窗口
+        }
+        
+        function addQuickAction() {
+            const newId = appData.dashboard.quickActions.length > 0 
+                ? Math.max(...appData.dashboard.quickActions.map(a => a.id)) + 1 
+                : 1;
+            appData.dashboard.quickActions.push({
+                id: newId,
+                name: '新操作',
+                icon: '✨',
+                action: 'journal'
+            });
+            saveData();
+            editQuickActions(); // 重新打开编辑窗口
+        }
+        
+        function editTodayStatus() {
+            const statusHTML = appData.dashboard.todayStatus.map(status => `
+                <div class="form-row" style="align-items: center;">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" class="form-control" value="${status.title}" 
+                               onchange="updateTodayStatus(${status.id}, 'title', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>内容</label>
+                        <input type="text" class="form-control" value="${status.value}" 
+                               onchange="updateTodayStatus(${status.id}, 'value', this.value)">
+                    </div>
+                    <button class="btn btn-delete btn-sm" style="margin-top: 25px;" onclick="deleteTodayStatus(${status.id})">删除</button>
+                </div>
+            `).join('');
+            
+            showModal('编辑今日状态', '📊', `
+                <div class="form-group">
+                    <label>状态项目</label>
+                    ${statusHTML}
+                </div>
+                <button class="btn btn-secondary w-100" onclick="addTodayStatus()">+ 添加状态项目</button>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="closeModal(); renderDashboard()">完成</button>
+            `);
+        }
+        
+        function updateTodayStatus(id, field, value) {
+            const status = appData.dashboard.todayStatus.find(s => s.id === id);
+            if (status) {
+                status[field] = value;
+                saveData();
+            }
+        }
+        
+        function deleteTodayStatus(id) {
+            appData.dashboard.todayStatus = appData.dashboard.todayStatus.filter(s => s.id !== id);
+            saveData();
+            editTodayStatus();
+        }
+        
+        function addTodayStatus() {
+            const newId = appData.dashboard.todayStatus.length > 0 
+                ? Math.max(...appData.dashboard.todayStatus.map(s => s.id)) + 1 
+                : 1;
+            appData.dashboard.todayStatus.push({
+                id: newId,
+                title: '新状态',
+                value: '未设置'
+            });
+            saveData();
+            editTodayStatus();
+        }
+        
+        function editStatusItem(id) {
+            const status = appData.dashboard.todayStatus.find(s => s.id === id);
+            if (!status) return;
+            
+            showModal('编辑状态项目', '📊', `
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="form-control" id="editStatusTitle" value="${status.title}">
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <input type="text" class="form-control" id="editStatusValue" value="${status.value}">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveStatusItem(${id})">保存</button>
+            `);
+        }
+        
+        function saveStatusItem(id) {
+            const status = appData.dashboard.todayStatus.find(s => s.id === id);
+            if (status) {
+                status.title = document.getElementById('editStatusTitle').value;
+                status.value = document.getElementById('editStatusValue').value;
+                saveData();
+                renderDashboard();
+                closeModal();
+            }
+        }
+        
+        // ===== 学习中心编辑函数 =====
+        function showTodoModal(todoId = null) {
+            currentEditItem = todoId ? appData.study.todos.find(t => t.id === todoId) : null;
+            currentEditType = 'todo';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑待办事项' : '添加待办事项', '✅', `
+                <div class="form-group">
+                    <label>任务标题</label>
+                    <input type="text" class="form-control" id="todoTitle" 
+                           value="${isEdit ? currentEditItem.title : ''}" placeholder="请输入任务标题">
+                </div>
+                <div class="form-group">
+                    <label>截止日期 (可选)</label>
+                    <input type="date" class="form-control" id="todoDueDate" 
+                           value="${isEdit ? currentEditItem.dueDate || '' : ''}">
+                </div>
+                <div class="form-group">
+                    <label>子任务 (每行一个，可选)</label>
+                    <textarea class="form-control" id="todoSubtasks" rows="3" placeholder="每行输入一个子任务">${isEdit && currentEditItem.subtasks ? currentEditItem.subtasks.map(st => st.title).join('\n') : ''}</textarea>
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveTodo()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveTodo() {
+            const title = document.getElementById('todoTitle').value.trim();
+            if (!title) {
+                alert('请输入任务标题');
+                return;
+            }
+            
+            const dueDate = document.getElementById('todoDueDate').value;
+            const subtasksText = document.getElementById('todoSubtasks').value.trim();
+            
+            const subtasks = subtasksText ? subtasksText.split('\n')
+                .filter(line => line.trim())
+                .map((title, index) => ({
+                    id: index + 1,
+                    title: title.trim(),
+                    completed: false
+                })) : [];
+            
+            if (currentEditItem) {
+                // 编辑现有待办
+                currentEditItem.title = title;
+                currentEditItem.dueDate = dueDate || null;
+                currentEditItem.subtasks = subtasks;
+            } else {
+                // 添加新待办
+                const newId = appData.study.todos.length > 0 
+                    ? Math.max(...appData.study.todos.map(t => t.id)) + 1 
+                    : 1;
+                
+                appData.study.todos.push({
+                    id: newId,
+                    title,
+                    dueDate: dueDate || null,
+                    subtasks,
+                    completed: false,
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            saveData();
+            renderStudyModule();
+            closeModal();
+        }
+        
+        function editTodo(id) {
+            showTodoModal(id);
+        }
+        
+        function deleteTodo(id) {
+            showConfirmModal('确认删除', '确定要删除这个待办事项吗？', () => {
+                appData.study.todos = appData.study.todos.filter(t => t.id !== id);
+                saveData();
+                renderStudyModule();
+            });
+        }
+        
+        function toggleTodo(id) {
+            const todo = appData.study.todos.find(t => t.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+                saveData();
+                renderStudyModule();
+            }
+        }
+        
+        function showSkillModal(skillId = null) {
+            currentEditItem = skillId ? appData.study.skills.find(s => s.id === skillId) : null;
+            currentEditType = 'skill';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑学习技能' : '添加学习技能', '🎯', `
+                <div class="form-group">
+                    <label>技能名称</label>
+                    <input type="text" class="form-control" id="skillName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：Python编程">
+                </div>
+                <div class="form-group">
+                    <label>学习步骤 (每行一个，可选)</label>
+                    <textarea class="form-control" id="skillSteps" rows="4" placeholder="每行输入一个学习步骤">${isEdit && currentEditItem.steps ? currentEditItem.steps.map(step => step.title).join('\n') : ''}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>预计学习时间 (小时，可选)</label>
+                    <input type="number" class="form-control" id="skillHours" 
+                           value="${isEdit ? currentEditItem.hours || '' : ''}" min="0" step="0.5">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveSkill()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveSkill() {
+            const name = document.getElementById('skillName').value.trim();
+            if (!name) {
+                alert('请输入技能名称');
+                return;
+            }
+            
+            const stepsText = document.getElementById('skillSteps').value.trim();
+            const hours = document.getElementById('skillHours').value;
+            
+            const steps = stepsText ? stepsText.split('\n')
+                .filter(line => line.trim())
+                .map((title, index) => ({
+                    id: index + 1,
+                    title: title.trim(),
+                    completed: false
+                })) : [];
+            
+            if (currentEditItem) {
+                // 编辑现有技能
+                currentEditItem.name = name;
+                currentEditItem.steps = steps;
+                currentEditItem.hours = hours ? parseFloat(hours) : null;
+            } else {
+                // 添加新技能
+                const newId = appData.study.skills.length > 0 
+                    ? Math.max(...appData.study.skills.map(s => s.id)) + 1 
+                    : 1;
+                
+                appData.study.skills.push({
+                    id: newId,
+                    name,
+                    steps,
+                    hours: hours ? parseFloat(hours) : null,
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            saveData();
+            renderStudyModule();
+            closeModal();
+        }
+        
+        function editSkill(id) {
+            showSkillModal(id);
+        }
+        
+        function deleteSkill(id) {
+            showConfirmModal('确认删除', '确定要删除这个学习技能吗？', () => {
+                appData.study.skills = appData.study.skills.filter(s => s.id !== id);
+                saveData();
+                renderStudyModule();
+            });
+        }
+        
+        function editTimerSettings() {
+            showModal('计时器设置', '⏱️', `
+                <div class="form-group">
+                    <label>默认计时时长 (分钟)</label>
+                    <input type="number" class="form-control" id="timerDuration" 
+                           value="${appData.study.timerSettings.defaultDuration}" min="1" max="120">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="timerAutoStart" ${appData.study.timerSettings.autoStart ? 'checked' : ''}>
+                        自动开始下一个计时
+                    </label>
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveTimerSettings()">保存</button>
+            `);
+        }
+        
+        function saveTimerSettings() {
+            const duration = parseInt(document.getElementById('timerDuration').value);
+            const autoStart = document.getElementById('timerAutoStart').checked;
+            
+            if (duration >= 1 && duration <= 120) {
+                appData.study.timerSettings.defaultDuration = duration;
+                appData.study.timerSettings.autoStart = autoStart;
+                
+                // 更新当前计时器
+                timerSeconds = duration * 60;
+                updateTimerDisplay();
+                
+                saveData();
+                closeModal();
+            } else {
+                alert('请输入1-120分钟之间的数值');
+            }
+        }
+        
+        // ===== 日记模块编辑函数 =====
+        function showNotebookModal(notebookId = null) {
+            currentEditItem = notebookId ? appData.journal.notebooks.find(n => n.id === notebookId) : null;
+            currentEditType = 'notebook';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑日记本' : '新建日记本', '📚', `
+                <div class="form-group">
+                    <label>日记本名称</label>
+                    <input type="text" class="form-control" id="notebookName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：日常随笔">
+                </div>
+                <div class="form-group">
+                    <label>封面颜色</label>
+                    <input type="color" class="form-control" id="notebookColor" 
+                           value="${isEdit ? currentEditItem.color : '#4a7c59'}" style="height: 40px;">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveNotebook()">${isEdit ? '保存' : '创建'}</button>
+            `);
+        }
+        
+        function saveNotebook() {
+            const name = document.getElementById('notebookName').value.trim();
+            if (!name) {
+                alert('请输入日记本名称');
+                return;
+            }
+            
+            const color = document.getElementById('notebookColor').value;
+            
+            if (currentEditItem) {
+                // 编辑现有日记本
+                currentEditItem.name = name;
+                currentEditItem.color = color;
+            } else {
+                // 创建新日记本
+                const newId = appData.journal.notebooks.length > 0 
+                    ? Math.max(...appData.journal.notebooks.map(n => n.id)) + 1 
+                    : 1;
+                
+                appData.journal.notebooks.push({
+                    id: newId,
+                    name,
+                    color,
+                    count: 0
+                });
+            }
+            
+            saveData();
+            renderJournalModule();
+            closeModal();
+        }
+        
+        function editNotebook(id) {
+            showNotebookModal(id);
+        }
+        
+        function deleteNotebook(id) {
+            if (id === 1) {
+                alert('默认日记本不能删除');
+                return;
+            }
+            
+            showConfirmModal('确认删除', '确定要删除这个日记本吗？该日记本中的所有日记也将被删除。', () => {
+                // 删除该日记本中的所有日记
+                appData.journal.entries = appData.journal.entries.filter(entry => entry.notebookId !== id);
+                
+                // 删除日记本
+                appData.journal.notebooks = appData.journal.notebooks.filter(n => n.id !== id);
+                
+                // 如果当前选中的日记本被删除，切换到默认日记本
+                if (appData.journal.currentNotebookId === id) {
+                    appData.journal.currentNotebookId = 1;
+                }
+                
+                saveData();
+                renderJournalModule();
+            });
+        }
+        
+        function selectNotebook(id) {
+            appData.journal.currentNotebookId = id;
+            saveData();
+            renderJournalModule();
+        }
+        
+        function saveJournal() {
+            const title = document.getElementById('journalTitle').value.trim();
+            const content = document.getElementById('journalContent').value.trim();
+            const notebookId = parseInt(document.getElementById('journalNotebookSelect').value);
+            
+            if (!content) {
+                alert('请输入日记内容');
+                return;
+            }
+            
+            if (!selectedEmotion) {
+                alert('请选择情绪');
+                return;
+            }
+            
+            const newId = appData.journal.entries.length > 0 
+                ? Math.max(...appData.journal.entries.map(e => e.id)) + 1 
+                : 1;
+            
+            const now = new Date();
+            const dateStr = now.toISOString().split('T')[0];
+            const timeStr = now.toTimeString().split(' ')[0].substring(0, 5);
+            
+            appData.journal.entries.push({
+                id: newId,
+                title: title || '无标题日记',
+                content,
+                emotion: selectedEmotion,
+                notebookId,
+                date: dateStr,
+                time: timeStr,
+                createdAt: now.toISOString()
+            });
+            
+            // 记录情绪到健康模块
+            appData.health.moodRecords[dateStr] = selectedEmotion;
+            
+            // 清空表单
+            document.getElementById('journalTitle').value = '';
+            document.getElementById('journalContent').value = '';
+            document.querySelectorAll('.emotion-btn').forEach(btn => btn.classList.remove('selected'));
+            selectedEmotion = null;
+            
+            saveData();
+            renderJournalModule();
+            renderHealthModule();
+            alert('日记保存成功！');
+        }
+        
+        function editJournal(id) {
+            const entry = appData.journal.entries.find(e => e.id === id);
+            if (!entry) return;
+            
+            // 填充表单
+            document.getElementById('journalTitle').value = entry.title;
+            document.getElementById('journalContent').value = entry.content;
+            
+            // 选择情绪
+            document.querySelectorAll('.emotion-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.textContent.includes(getEmotionText(entry.emotion))) {
+                    btn.classList.add('selected');
+                    selectedEmotion = entry.emotion;
+                }
+            });
+            
+            // 选择日记本
+            document.getElementById('journalNotebookSelect').value = entry.notebookId;
+            
+            // 切换到日记模块
+            switchTab('journal');
+            
+            // 滚动到编辑器
+            document.getElementById('journalContent').focus();
+        }
+        
+        function deleteJournal(id) {
+            showConfirmModal('确认删除', '确定要删除这篇日记吗？', () => {
+                appData.journal.entries = appData.journal.entries.filter(e => e.id !== id);
+                saveData();
+                renderJournalModule();
+            });
+        }
+        
+        function refreshJournals() {
+            renderJournalList();
+        }
+        
+        // ===== 财产管理编辑函数 =====
+        function showAccountModal(accountId = null) {
+            currentEditItem = accountId ? appData.finance.accounts.find(a => a.id === accountId) : null;
+            currentEditType = 'account';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑账户' : '添加账户', '🏦', `
+                <div class="form-group">
+                    <label>账户名称</label>
+                    <input type="text" class="form-control" id="accountName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：微信钱包">
+                </div>
+                <div class="form-group">
+                    <label>账户图标</label>
+                    <select class="form-control" id="accountIcon">
+                        <option value="💳" ${isEdit && currentEditItem.icon === '💳' ? 'selected' : ''}>💳 卡片</option>
+                        <option value="💵" ${isEdit && currentEditItem.icon === '💵' ? 'selected' : ''}>💵 现金</option>
+                        <option value="🏦" ${isEdit && currentEditItem.icon === '🏦' ? 'selected' : ''}>🏦 银行</option>
+                        <option value="💰" ${isEdit && currentEditItem.icon === '💰' ? 'selected' : ''}>💰 钱包</option>
+                        <option value="📱" ${isEdit && currentEditItem.icon === '📱' ? 'selected' : ''}>📱 手机</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>账户类型</label>
+                    <select class="form-control" id="accountType">
+                        <option value="digital" ${isEdit && currentEditItem.type === 'digital' ? 'selected' : ''}>数字钱包</option>
+                        <option value="cash" ${isEdit && currentEditItem.type === 'cash' ? 'selected' : ''}>现金</option>
+                        <option value="bank" ${isEdit && currentEditItem.type === 'bank' ? 'selected' : ''}>银行卡</option>
+                        <option value="investment" ${isEdit && currentEditItem.type === 'investment' ? 'selected' : ''}>投资账户</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>初始余额 (¥)</label>
+                    <input type="number" class="form-control" id="accountBalance" 
+                           value="${isEdit ? currentEditItem.balance : '0'}" step="0.01">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveAccount()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveAccount() {
+            const name = document.getElementById('accountName').value.trim();
+            if (!name) {
+                alert('请输入账户名称');
+                return;
+            }
+            
+            const icon = document.getElementById('accountIcon').value;
+            const type = document.getElementById('accountType').value;
+            const balance = parseFloat(document.getElementById('accountBalance').value) || 0;
+            
+            if (currentEditItem) {
+                // 编辑现有账户
+                currentEditItem.name = name;
+                currentEditItem.icon = icon;
+                currentEditItem.type = type;
+                currentEditItem.balance = balance;
+            } else {
+                // 添加新账户
+                const newId = appData.finance.accounts.length > 0 
+                    ? Math.max(...appData.finance.accounts.map(a => a.id)) + 1 
+                    : 1;
+                
+                appData.finance.accounts.push({
+                    id: newId,
+                    name,
+                    icon,
+                    type,
+                    balance
+                });
+            }
+            
+            saveData();
+            renderFinanceModule();
+            closeModal();
+        }
+        
+        function editAccount(id) {
+            showAccountModal(id);
+        }
+        
+        function deleteAccount(id) {
+            showConfirmModal('确认删除', '确定要删除这个账户吗？该账户的所有交易记录也将被删除。', () => {
+                // 删除相关交易记录
+                appData.finance.transactions = appData.finance.transactions.filter(t => 
+                    t.accountId !== id && t.targetAccountId !== id
+                );
+                
+                // 删除账户
+                appData.finance.accounts = appData.finance.accounts.filter(a => a.id !== id);
+                
+                saveData();
+                renderFinanceModule();
+            });
+        }
+        
+        function addTransaction() {
+            const type = document.getElementById('transactionType').value;
+            const category = document.getElementById('transactionCategory').value;
+            const amount = parseFloat(document.getElementById('transactionAmount').value);
+            const accountId = parseInt(document.getElementById('transactionAccount').value);
+            const targetAccountId = type === 'transfer' ? parseInt(document.getElementById('transactionTargetAccount').value) : null;
+            const date = document.getElementById('transactionDate').value;
+            const note = document.getElementById('transactionNote').value.trim();
+            
+            if (!amount || amount <= 0) {
+                alert('请输入有效金额');
+                return;
+            }
+            
+            if (!accountId) {
+                alert('请选择账户');
+                return;
+            }
+            
+            if (type === 'transfer' && (!targetAccountId || targetAccountId === accountId)) {
+                alert('请选择不同的目标账户');
+                return;
+            }
+            
+            const account = appData.finance.accounts.find(a => a.id === accountId);
+            if (!account) {
+                alert('账户不存在');
+                return;
+            }
+            
+            // 检查余额
+            if (type === 'expense' && account.balance < amount) {
+                if (!confirm('账户余额不足，是否继续记录？')) return;
+            }
+            
+            const newId = appData.finance.transactions.length > 0 
+                ? Math.max(...appData.finance.transactions.map(t => t.id)) + 1 
+                : 1;
+            
+            // 创建交易记录
+            const transaction = {
+                id: newId,
+                type,
+                category,
+                amount,
+                accountId,
+                targetAccountId,
+                date: date || new Date().toISOString().split('T')[0],
+                note,
+                createdAt: new Date().toISOString()
+            };
+            
+            appData.finance.transactions.push(transaction);
+            
+            // 更新账户余额
+            switch(type) {
+                case 'income':
+                    account.balance += amount;
+                    break;
+                case 'expense':
+                    account.balance -= amount;
+                    break;
+                case 'transfer':
+                    account.balance -= amount;
+                    const targetAccount = appData.finance.accounts.find(a => a.id === targetAccountId);
+                    if (targetAccount) {
+                        targetAccount.balance += amount;
+                    }
+                    break;
+            }
+            
+            // 清空表单
+            document.getElementById('transactionAmount').value = '';
+            document.getElementById('transactionNote').value = '';
+            
+            saveData();
+            renderFinanceModule();
+            alert('交易记录成功！');
+        }
+        
+        function editTransaction(id) {
+            const transaction = appData.finance.transactions.find(t => t.id === id);
+            if (!transaction) return;
+            
+            showModal('编辑交易记录', '💸', `
+                <div class="form-group">
+                    <label>类型</label>
+                    <select class="form-control" id="editTransType" value="${transaction.type}">
+                        <option value="expense" ${transaction.type === 'expense' ? 'selected' : ''}>支出</option>
+                        <option value="income" ${transaction.type === 'income' ? 'selected' : ''}>收入</option>
+                        <option value="transfer" ${transaction.type === 'transfer' ? 'selected' : ''}>转账</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>分类</label>
+                    <select class="form-control" id="editTransCategory">
+                        ${appData.finance.categories.map(cat => 
+                            `<option value="${cat}" ${transaction.category === cat ? 'selected' : ''}>${cat}</option>`
+                        ).join('')}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>金额 (¥)</label>
+                    <input type="number" class="form-control" id="editTransAmount" value="${transaction.amount}" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>日期</label>
+                    <input type="date" class="form-control" id="editTransDate" value="${transaction.date}">
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <input type="text" class="form-control" id="editTransNote" value="${transaction.note || ''}">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveTransaction(${id})">保存</button>
+            `);
+        }
+        
+        function saveTransaction(id) {
+            // 实现交易记录编辑逻辑
+            alert('交易记录编辑功能待实现');
+            closeModal();
+        }
+        
+        function deleteTransaction(id) {
+            showConfirmModal('确认删除', '确定要删除这条交易记录吗？', () => {
+                // 这里需要实现反向更新账户余额的逻辑
+                appData.finance.transactions = appData.finance.transactions.filter(t => t.id !== id);
+                saveData();
+                renderFinanceModule();
+            });
+        }
+        
+        function refreshTransactions() {
+            renderTransactionList();
+        }
+        
+        function showWishModal(wishId = null) {
+            currentEditItem = wishId ? appData.finance.wishes.find(w => w.id === wishId) : null;
+            currentEditType = 'wish';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑心愿' : '添加心愿', '🎁', `
+                <div class="form-group">
+                    <label>心愿名称</label>
+                    <input type="text" class="form-control" id="wishName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：新手机">
+                </div>
+                <div class="form-group">
+                    <label>目标金额 (¥)</label>
+                    <input type="number" class="form-control" id="wishTarget" 
+                           value="${isEdit ? currentEditItem.targetAmount : ''}" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label>已存金额 (¥)</label>
+                    <input type="number" class="form-control" id="wishSaved" 
+                           value="${isEdit ? currentEditItem.savedAmount : '0'}" step="0.01" min="0">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveWish()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveWish() {
+            const name = document.getElementById('wishName').value.trim();
+            if (!name) {
+                alert('请输入心愿名称');
+                return;
+            }
+            
+            const target = parseFloat(document.getElementById('wishTarget').value);
+            const saved = parseFloat(document.getElementById('wishSaved').value) || 0;
+            
+            if (!target || target <= 0) {
+                alert('请输入有效的目标金额');
+                return;
+            }
+            
+            if (saved > target) {
+                alert('已存金额不能超过目标金额');
+                return;
+            }
+            
+            if (currentEditItem) {
+                // 编辑现有心愿
+                currentEditItem.name = name;
+                currentEditItem.targetAmount = target;
+                currentEditItem.savedAmount = saved;
+            } else {
+                // 添加新心愿
+                const newId = appData.finance.wishes.length > 0 
+                    ? Math.max(...appData.finance.wishes.map(w => w.id)) + 1 
+                    : 1;
+                
+                appData.finance.wishes.push({
+                    id: newId,
+                    name,
+                    targetAmount: target,
+                    savedAmount: saved,
+                    active: true
+                });
+            }
+            
+            saveData();
+            renderFinanceModule();
+            closeModal();
+        }
+        
+        function editWish(id) {
+            showWishModal(id);
+        }
+        
+        function deleteWish(id) {
+            showConfirmModal('确认删除', '确定要删除这个心愿吗？', () => {
+                appData.finance.wishes = appData.finance.wishes.filter(w => w.id !== id);
+                saveData();
+                renderFinanceModule();
+            });
+        }
+        
+        function toggleWish(id) {
+            const wish = appData.finance.wishes.find(w => w.id === id);
+            if (wish) {
+                wish.active = !wish.active;
+                saveData();
+                renderFinanceModule();
+            }
+        }
+        
+        function calculateWishlistTotal() {
+            const total = appData.finance.wishes
+                .filter(w => w.active)
+                .reduce((sum, w) => sum + w.targetAmount, 0);
+            document.getElementById('wishlistTotal').textContent = `¥ ${total.toFixed(2)}`;
+        }
+        
+        // ===== 健康管理编辑函数 =====
+        function showMedicationModal(medicationId = null) {
+            currentEditItem = medicationId ? appData.health.medications.find(m => m.id === medicationId) : null;
+            currentEditType = 'medication';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑药品' : '添加药品', '💊', `
+                <div class="form-group">
+                    <label>药品名称</label>
+                    <input type="text" class="form-control" id="medName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：阿莫西林">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>服用剂量</label>
+                        <input type="text" class="form-control" id="medDosage" 
+                               value="${isEdit ? currentEditItem.dosage : ''}" placeholder="例如：1粒">
+                    </div>
+                    <div class="form-group">
+                        <label>服用时间</label>
+                        <input type="time" class="form-control" id="medTime" 
+                               value="${isEdit ? currentEditItem.time : '08:00'}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>服用频率</label>
+                    <select class="form-control" id="medFrequency">
+                        <option value="每日一次" ${isEdit && currentEditItem.frequency === '每日一次' ? 'selected' : ''}>每日一次</option>
+                        <option value="每日两次" ${isEdit && currentEditItem.frequency === '每日两次' ? 'selected' : ''}>每日两次</option>
+                        <option value="每日三次" ${isEdit && currentEditItem.frequency === '每日三次' ? 'selected' : ''}>每日三次</option>
+                        <option value="每周一次" ${isEdit && currentEditItem.frequency === '每周一次' ? 'selected' : ''}>每周一次</option>
+                        <option value="按需服用" ${isEdit && currentEditItem.frequency === '按需服用' ? 'selected' : ''}>按需服用</option>
+                    </select>
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveMedication()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveMedication() {
+            const name = document.getElementById('medName').value.trim();
+            if (!name) {
+                alert('请输入药品名称');
+                return;
+            }
+            
+            const dosage = document.getElementById('medDosage').value.trim();
+            const time = document.getElementById('medTime').value;
+            const frequency = document.getElementById('medFrequency').value;
+            
+            if (currentEditItem) {
+                // 编辑现有药品
+                currentEditItem.name = name;
+                currentEditItem.dosage = dosage;
+                currentEditItem.time = time;
+                currentEditItem.frequency = frequency;
+            } else {
+                // 添加新药品
+                const newId = appData.health.medications.length > 0 
+                    ? Math.max(...appData.health.medications.map(m => m.id)) + 1 
+                    : 1;
+                
+                appData.health.medications.push({
+                    id: newId,
+                    name,
+                    dosage,
+                    time,
+                    frequency,
+                    taken: false
+                });
+            }
+            
+            saveData();
+            renderHealthModule();
+            closeModal();
+        }
+        
+        function editMedication(id) {
+            showMedicationModal(id);
+        }
+        
+        function deleteMedication(id) {
+            showConfirmModal('确认删除', '确定要删除这个药品吗？', () => {
+                appData.health.medications = appData.health.medications.filter(m => m.id !== id);
+                saveData();
+                renderHealthModule();
+            });
+        }
+        
+        function toggleMedication(id) {
+            const med = appData.health.medications.find(m => m.id === id);
+            if (med) {
+                med.taken = !med.taken;
+                saveData();
+                renderHealthModule();
+            }
+        }
+        
+        function markAllMedications() {
+            appData.health.medications.forEach(med => med.taken = true);
+            saveData();
+            renderHealthModule();
+            alert('全部药品已标记为完成！');
+        }
+        
+        function showExerciseModal(exerciseId = null) {
+            currentEditItem = exerciseId ? appData.health.exercises.find(e => e.id === exerciseId) : null;
+            currentEditType = 'exercise';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑运动项目' : '添加运动项目', '🏃', `
+                <div class="form-group">
+                    <label>运动名称</label>
+                    <input type="text" class="form-control" id="exerciseName" 
+                           value="${isEdit ? currentEditItem.name : ''}" placeholder="例如：俯卧撑">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>运动类型</label>
+                        <select class="form-control" id="exerciseType">
+                            <option value="strength" ${isEdit && currentEditItem.type === 'strength' ? 'selected' : ''}>力量训练</option>
+                            <option value="cardio" ${isEdit && currentEditItem.type === 'cardio' ? 'selected' : ''}>有氧运动</option>
+                            <option value="flexibility" ${isEdit && currentEditItem.type === 'flexibility' ? 'selected' : ''}>柔韧性训练</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>目标</label>
+                        <input type="text" class="form-control" id="exerciseTarget" 
+                               value="${isEdit ? currentEditItem.target : ''}" placeholder="例如：3组×15个 或 30分钟">
+                    </div>
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveExercise()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveExercise() {
+            const name = document.getElementById('exerciseName').value.trim();
+            if (!name) {
+                alert('请输入运动名称');
+                return;
+            }
+            
+            const type = document.getElementById('exerciseType').value;
+            const target = document.getElementById('exerciseTarget').value.trim();
+            
+            if (currentEditItem) {
+                // 编辑现有运动
+                currentEditItem.name = name;
+                currentEditItem.type = type;
+                currentEditItem.target = target;
+            } else {
+                // 添加新运动
+                const newId = appData.health.exercises.length > 0 
+                    ? Math.max(...appData.health.exercises.map(e => e.id)) + 1 
+                    : 1;
+                
+                appData.health.exercises.push({
+                    id: newId,
+                    name,
+                    type,
+                    target,
+                    completed: 0
+                });
+            }
+            
+            saveData();
+            renderHealthModule();
+            closeModal();
+        }
+        
+        function editExercise(id) {
+            showExerciseModal(id);
+        }
+        
+        function deleteExercise(id) {
+            showConfirmModal('确认删除', '确定要删除这个运动项目吗？', () => {
+                appData.health.exercises = appData.health.exercises.filter(e => e.id !== id);
+                saveData();
+                renderHealthModule();
+            });
+        }
+        
+        function toggleExercise(id) {
+            const exercise = appData.health.exercises.find(e => e.id === id);
+            if (exercise) {
+                exercise.completed = exercise.completed > 0 ? 0 : 1;
+                saveData();
+                renderHealthModule();
+            }
+        }
+        
+        function showBodyDataModal(dataId = null) {
+            currentEditItem = dataId ? appData.health.bodyData.find(d => d.id === dataId) : null;
+            currentEditType = 'bodyData';
+            
+            const isEdit = !!currentEditItem;
+            
+            showModal(isEdit ? '编辑身体数据' : '添加身体数据', '📈', `
+                <div class="form-group">
+                    <label>记录日期</label>
+                    <input type="date" class="form-control" id="bodyDataDate" 
+                           value="${isEdit ? currentEditItem.date : new Date().toISOString().split('T')[0]}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>体重 (kg)</label>
+                        <input type="number" class="form-control" id="bodyDataWeight" 
+                               value="${isEdit ? currentEditItem.weight : ''}" step="0.1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>体脂率 (%)</label>
+                        <input type="number" class="form-control" id="bodyDataFat" 
+                               value="${isEdit ? currentEditItem.fat || '' : ''}" step="0.1" min="0" max="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备注 (可选)</label>
+                    <input type="text" class="form-control" id="bodyDataNote" 
+                           value="${isEdit ? currentEditItem.note || '' : ''}" placeholder="例如：健身第3天">
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveBodyData()">${isEdit ? '保存' : '添加'}</button>
+            `);
+        }
+        
+        function saveBodyData() {
+            const date = document.getElementById('bodyDataDate').value;
+            const weight = parseFloat(document.getElementById('bodyDataWeight').value);
+            const fat = document.getElementById('bodyDataFat').value ? parseFloat(document.getElementById('bodyDataFat').value) : null;
+            const note = document.getElementById('bodyDataNote').value.trim();
+            
+            if (!weight || weight <= 0) {
+                alert('请输入有效体重');
+                return;
+            }
+            
+            if (currentEditItem) {
+                // 编辑现有数据
+                currentEditItem.date = date;
+                currentEditItem.weight = weight;
+                currentEditItem.fat = fat;
+                currentEditItem.note = note;
+            } else {
+                // 添加新数据
+                const newId = appData.health.bodyData.length > 0 
+                    ? Math.max(...appData.health.bodyData.map(d => d.id)) + 1 
+                    : 1;
+                
+                appData.health.bodyData.push({
+                    id: newId,
+                    date,
+                    weight,
+                    fat,
+                    note,
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            saveData();
+            renderHealthModule();
+            closeModal();
+        }
+        
+        function editBodyData(id) {
+            showBodyDataModal(id);
+        }
+        
+        function deleteBodyData(id) {
+            showConfirmModal('确认删除', '确定要删除这条身体数据吗？', () => {
+                appData.health.bodyData = appData.health.bodyData.filter(d => d.id !== id);
+                saveData();
+                renderHealthModule();
+            });
+        }
+        
+        function updateHealthStatus() {
+            // 更新今日健康状态
+            const today = new Date().toISOString().split('T')[0];
+            const todayMood = appData.health.moodRecords[today];
+            
+            appData.dashboard.todayStatus[1].value = `睡眠 -- | 喝水 --/8 杯`;
+            appData.dashboard.todayStatus[3].value = todayMood ? `${getEmotionEmoji(todayMood)} ${getEmotionText(todayMood)}` : '😐 未记录';
+            
+            renderDashboard();
+        }
+        
+        function recordMood(dateStr) {
+            showModal('记录情绪', '😊', `
+                <div class="form-group">
+                    <label>选择情绪 (${dateStr})</label>
+                    <div class="emotion-selector">
+                        <div class="emotion-btn" onclick="selectMoodForDate('good', '${dateStr}')">😊 开心</div>
+                        <div class="emotion-btn" onclick="selectMoodForDate('good', '${dateStr}')">😌 平静</div>
+                        <div class="emotion-btn" onclick="selectMoodForDate('neutral', '${dateStr}')">😐 一般</div>
+                        <div class="emotion-btn" onclick="selectMoodForDate('bad', '${dateStr}')">😔 难过</div>
+                        <div class="emotion-btn" onclick="selectMoodForDate('bad', '${dateStr}')">😫 疲惫</div>
+                    </div>
+                </div>
+            `, `
+                <button class="btn btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn btn-save" onclick="saveMoodForDate('${dateStr}')">保存</button>
+            `);
+        }
+        
+        function selectMoodForDate(mood, dateStr) {
+            selectedEmotion = mood;
+            document.querySelectorAll('.emotion-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+        
+        function saveMoodForDate(dateStr) {
+            if (!selectedEmotion) {
+                alert('请选择情绪');
+                return;
+            }
+            
+            appData.health.moodRecords[dateStr] = selectedEmotion;
+            selectedEmotion = null;
+            
+            saveData();
+            renderHealthModule();
+            closeModal();
+        }
+        
+        function prevMonth() {
+            appData.health.currentMonth--;
+            if (appData.health.currentMonth < 0) {
+                appData.health.currentMonth = 11;
+                appData.health.currentYear--;
+            }
+            renderHealthModule();
+        }
+        
+        function nextMonth() {
+            appData.health.currentMonth++;
+            if (appData.health.currentMonth > 11) {
+                appData.health.currentMonth = 0;
+                appData.health.currentYear++;
+            }
+            renderHealthModule();
+        }
+        
+        // ===== 系统设置函数 =====
+        function exportData() {
+            const dataStr = JSON.stringify(appData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `小芸系统备份_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            URL.revokeObjectURL(url);
+            alert('数据导出成功！');
+        }
+        
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        appData = importedData;
+                        saveData();
+                        renderAll();
+                        alert('数据导入成功！');
+                    } catch (err) {
+                        alert('导入失败：文件格式不正确');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+        
+        function backupData() {
+            appData.settings.lastBackup = new Date().toISOString();
+            saveData();
+            alert('数据备份完成！');
+        }
+        
+        function resetData() {
+            showConfirmModal('确认重置', '确定要重置所有数据吗？此操作不可撤销！', () => {
+                initializeSystem();
+            });
+        }
+        
+        function setTheme(theme) {
+            appData.settings.theme = theme;
+            saveData();
+            alert(`已切换到${theme === 'light' ? '浅色' : theme === 'dark' ? '深色' : '墨绿'}主题，刷新页面生效`);
+        }
+        
+        // ===== 通用功能 =====
+        function quickAction(action) {
+            switch(action) {
+                case 'journal':
+                    switchTab('journal');
+                    document.getElementById('journalContent').focus();
+                    break;
+                case 'finance':
+                    switchTab('finance');
+                    document.getElementById('transactionAmount').focus();
+                    break;
+                case 'timer':
+                    startTimer();
+                    switchTab('study');
+                    break;
+                case 'health':
+                    switchTab('health');
+                    break;
+            }
+        }
+        
+        // ===== 计时器功能 =====
+        function startTimer() {
+            if (!isTimerRunning) {
+                isTimerRunning = true;
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        }
+        
+        function pauseTimer() {
+            if (isTimerRunning) {
+                isTimerRunning = false;
+                clearInterval(timerInterval);
+            }
+        }
+        
+        function stopTimer() {
+            isTimerRunning = false;
+            clearInterval(timerInterval);
+            
+            const note = document.getElementById('timerNote').value.trim();
+            if (note) {
+                const today = new Date().toISOString().split('T')[0];
+                const duration = (25 * 60 - timerSeconds) / 60; // 转换为分钟
+                
+                appData.study.studyRecords.push({
+                    date: today,
+                    duration,
+                    note,
+                    createdAt: new Date().toISOString()
+                });
+                
+                saveData();
+                renderStudyModule();
+                alert(`计时结束！学习内容已记录：${note} (${duration.toFixed(1)}分钟)`);
+                document.getElementById('timerNote').value = '';
+            } else {
+                alert('计时结束！请填写学习内容备注。');
+                document.getElementById('timerNote').focus();
+            }
+            
+            timerSeconds = appData.study.timerSettings.defaultDuration * 60;
+            updateTimerDisplay();
+        }
+        
+        function updateTimer() {
+            if (timerSeconds > 0) {
+                timerSeconds--;
+                updateTimerDisplay();
+            } else {
+                stopTimer();
+            }
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // ===== 日记功能 =====
+        function insertTimestamp() {
+            const textarea = document.getElementById('journalContent');
+            const now = new Date();
+            const timestamp = `【${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}】`;
+            
+            if (textarea.value.includes('//now')) {
+                textarea.value = textarea.value.replace('//now', timestamp);
+            } else {
+                const cursorPos = textarea.selectionStart;
+                const textBefore = textarea.value.substring(0, cursorPos);
+                const textAfter = textarea.value.substring(cursorPos);
+                textarea.value = textBefore + timestamp + ' ' + textAfter;
+            }
+        }
+        
+        function selectEmotion(button, emotion) {
+            document.querySelectorAll('.emotion-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            button.classList.add('selected');
+            selectedEmotion = emotion;
+        }
+        
+        // ===== 工具函数 =====
+        function getEmotionText(emotion) {
+            switch(emotion) {
+                case 'good': return '开心';
+                case 'neutral': return '一般';
+                case 'bad': return '难过';
+                default: return '未知';
+            }
+        }
+        
+        function getEmotionEmoji(emotion) {
+            switch(emotion) {
+                case 'good': return '😊';
+                case 'neutral': return '😐';
+                case 'bad': return '😔';
+                default: return '❓';
+            }
+        }
+        
+        // ===== 模态框功能 =====
+        function showModal(title, icon, bodyHTML, footerHTML) {
+            document.getElementById('modalTitle').innerHTML = `<span>${icon}</span> ${title}`;
+            document.getElementById('modalBody').innerHTML = bodyHTML;
+            document.getElementById('modalFooter').innerHTML = footerHTML;
+            document.getElementById('editModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('editModal').classList.remove('active');
+            currentEditItem = null;
+            currentEditType = null;
+        }
+        
+        function showConfirmModal(title, message, callback) {
+            document.getElementById('confirmMessage').textContent = message;
+            document.getElementById('confirmModal').classList.add('active');
+            
+            const confirmBtn = document.getElementById('confirmActionBtn');
+            confirmBtn.onclick = function() {
+                closeConfirmModal();
+                if (callback) callback();
+            };
+        }
+        
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+        }
+        
+        // ===== 选项卡切换 =====
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+        }
+        
+        // ===== 初始化 =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载数据
+            loadData();
+            
+            // 初始化渲染
+            renderAll();
+            
+            // 设置默认日期
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('transactionDate').value = today;
+            
+            // 初始化计时器
+            timerSeconds = appData.study.timerSettings.defaultDuration * 60;
+            updateTimerDisplay();
+            
+            // 选项卡点击事件
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+            
+            // 日记 //now 快捷键
+            document.getElementById('journalContent').addEventListener('input', function(e) {
+                if (this.value.includes('//now')) {
+                    insertTimestamp();
+                }
+            });
+            
+            // 全局快捷键
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+D: 插入当前时间
+                if (e.ctrlKey && e.key === 'd') {
+                    e.preventDefault();
+                    const activeElement = document.activeElement;
+                    if (activeElement && (activeElement.id === 'journalContent' || activeElement.type === 'textarea')) {
+                        insertTimestamp();
+                    }
+                }
+                
+                // Ctrl+Q: 快速记账
+                if (e.ctrlKey && e.key === 'q') {
+                    e.preventDefault();
+                    quickAction('finance');
+                }
+                
+                // Ctrl+T: 开始计时
+                if (e.ctrlKey && e.key === 't') {
+                    e.preventDefault();
+                    quickAction('timer');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
